@@ -13,6 +13,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+      if (savedInstanceState == null) {
+        getFragmentManager().beginTransaction()
+                .add(R.id.main_container, new DiscoverFragment())
+                .commit();
+      }
     }
 
 
@@ -28,10 +33,26 @@ public class MainActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        switch (item.getItemId()){
+          case R.id.action_settings:
             return true;
+          case R.id.discover:
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.main_container, new DiscoverFragment())
+                    .commit();
+            break;
+          case R.id.matches:
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.main_container, new MatchesFragment())
+                    .commit();
+            break;
+          case R.id.profile:
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.main_container, new ProfileFragment())
+                    .commit();
+            break;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }
