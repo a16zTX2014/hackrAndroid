@@ -10,13 +10,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class LoginActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+      getActionBar().hide();
+      setContentView(R.layout.activity_login);
+//      getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
@@ -57,9 +60,17 @@ public class LoginActivity extends Activity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_login, container, false);
 
-          Intent i = new Intent(getActivity(), MainActivity.class);
-          Log.d("Login Fragment", "Logged in!");
-          startActivity(i);
+          Button submitButton = (Button) rootView.findViewById(R.id.login_submit);
+          submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent i = new Intent(getActivity(), MainActivity.class);
+              Log.d("Login Fragment", "Logged in!");
+              startActivity(i);
+              getActivity().finish();
+            }
+          });
+
           return rootView;
         }
     }

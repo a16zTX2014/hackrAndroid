@@ -1,16 +1,45 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment">
+    android:orientation="vertical"
+    tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment"
+    android:padding="20dp">
 
     <TextView
-        android:text="@string/hello_world"
+        android:text="@string/app_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="60sp"
+        android:textColor="#353535"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"/>
 
-</RelativeLayout>
+    <EditText
+        android:id="@+id/login_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:padding="20dp"
+        />
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:padding="20dp"
+        />
+    <Button
+        android:id="@+id/login_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:padding="20dp"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#fff"
+        android:background="#353535"/>
+
+</LinearLayout>
