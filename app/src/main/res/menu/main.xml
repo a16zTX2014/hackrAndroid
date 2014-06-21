@@ -4,14 +4,11 @@
     tools:context="com.example.hackrandroid.app.MainActivity" >
     <item android:id="@+id/discover"
         android:title="Discover"
-        android:showAsAction="always"
-        android:icon="@drawable/ic_launcher"/>
+        android:showAsAction="always"/>
     <item android:id="@+id/matches"
         android:title="Matches"
-        android:showAsAction="always"
-        android:icon="@drawable/ic_launcher"/>
+        android:showAsAction="always"/>
     <item android:id="@+id/profile"
         android:title="Profile"
-        android:icon="@drawable/ic_launcher"
         android:showAsAction="always"/>
 </menu>
