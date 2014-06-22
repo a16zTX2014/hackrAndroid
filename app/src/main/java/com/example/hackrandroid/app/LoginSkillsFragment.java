@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,7 @@ public class LoginSkillsFragment extends Fragment {
 
   public LoginSkillsFragment() {
   }
+
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,13 +58,21 @@ public class LoginSkillsFragment extends Fragment {
 
     adapter = new SkillsAdapter(getActivity(), R.layout.skill_item, skillsList);
     skillsListView.setAdapter(adapter);
-
+    skillsListView.setHeaderDividersEnabled(false);
 
     return rootView;
   }
 
   private void finishSignUp(){
     //TODO: Push To Parse and Log in with Parse
+    Bundle arguments = getArguments();
+    String name = arguments.getString("name");
+    String school = arguments.getString("school");
+    String username = arguments.getString("username");
+    Toast.makeText(getActivity(), username + " " + name + " " + school, Toast.LENGTH_LONG).show();
+
+    
+
     Intent i = new Intent(getActivity(), MainActivity.class);
     i.putExtra("tab_index",2);
     startActivity(i);

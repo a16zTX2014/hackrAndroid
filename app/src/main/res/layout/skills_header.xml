@@ -4,14 +4,16 @@
               android:layout_height="wrap_content"
               android:orientation="vertical"
               tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment"
-              android:background="@color/concrete">
+              android:background="#ffffff">
 
     <TextView
         android:id="@+id/login_skills_header_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tell Us About Yourself"
-        android:textSize="20sp"
+        android:textSize="30sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         />
     <TextView
         android:id="@+id/login_skills_header_subtitle"
@@ -19,6 +21,8 @@
         android:layout_height="wrap_content"
         android:text="Select what describes you"
         android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
         />
 
 </LinearLayout>

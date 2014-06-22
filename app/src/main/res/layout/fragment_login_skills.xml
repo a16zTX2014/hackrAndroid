@@ -4,20 +4,24 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment"
-              android:background="#ddd">
+              android:background="#ffffff">
 
     <ListView
         android:id="@+id/login_skills_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:isScrollContainer="false"
+        android:overScrollMode="never"/>
 
     <Button
         android:id="@+id/login_skills_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:textSize="20sp"
+        android:text="Done"
+        android:textSize="30sp"
         android:textColor="#fff"
         android:layout_alignParentBottom="true"
-        android:background="#353535"/>
+        android:background="#2ecc71"
+        android:padding="5dp"/>
 </RelativeLayout>

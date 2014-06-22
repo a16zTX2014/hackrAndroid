@@ -64,6 +64,11 @@ public class LoginMainFragment extends Fragment {
       public void onClick(View v) {
         Fragment frag = new LoginProfileFragment();
         String tag = frag.getTag();
+        Bundle arguments = new Bundle();
+        arguments.putString("username", usernameView.getText().toString());
+        arguments.putString("password", passwordView.getText().toString());
+        frag.setArguments(arguments);
+
         FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
         fragmentTransaction.replace(R.id.container, frag);
