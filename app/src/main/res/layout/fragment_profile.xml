@@ -12,5 +12,7 @@
         android:layout_height="match_parent"
         android:divider="@null"
         android:background="#ffffff"
-        android:dividerHeight="0dp"/>
+        android:dividerHeight="0dp"
+        android:scrollbars="none"
+        android:overScrollMode="never"/>
 </LinearLayout>

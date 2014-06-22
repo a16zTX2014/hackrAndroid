@@ -72,12 +72,72 @@ public class ProfileFragment extends Fragment {
     profilePic.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap));
     profilePic.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-    ListView profileListView = (ListView) rootView.findViewById(R.id.profile_list);
+    final ListView profileListView = (ListView) rootView.findViewById(R.id.profile_list);
 
     adapter = new ProfileAdapter(getActivity(),profileItemList);
 
     profileListView.addHeaderView(header);
     profileListView.setAdapter(adapter);
+
+    /*profileListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            switch(i) {
+                case 1: {
+                    Toast.makeText(getActivity(), "hi", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+                    alert.setTitle("Name");
+                    alert.setMessage(ParseUser.getCurrentUser().getUsername());
+
+                    // Set an EditText view to get user input
+                    final EditText input = new EditText(getActivity());
+                    alert.setView(input);
+
+                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            String value = input.getText().toString();
+                            // Do something with value!
+                            ParseQuery<ParseUser> query = ParseUser.getQuery();
+                            query.whereEqualTo("username", ParseUser.getCurrentUser().getUsername());
+                            query.findInBackground(new FindCallback<ParseUser>() {
+                                @Override
+                                public void done(List<ParseUser> parseUsers, ParseException e) {
+                                    if (e == null) {
+                                        Log.e("couldnt find user", String.valueOf(parseUsers.size()));
+                                        ParseObject parseObject = parseUsers.get(0);
+                                        parseObject.put("name", input.getText().toString());
+                                        parseObject.saveInBackground();
+
+                                        profileItemList.set(1, new ProfileItem(input.getText().toString(), false));
+                                        adapter.notifyDataSetChanged();
+                                    } else {
+                                        Log.e("couldnt find user", "couldnt find user");
+                                    }
+                                }
+                            });
+                        }
+                    });
+
+                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // Canceled.
+                        }
+                    });
+
+                    alert.show();
+                    break;
+                }
+                case 4: {
+                    Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                default: {
+                    Toast.makeText(getActivity(), "lol", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }); */
 
     return rootView;
   }
