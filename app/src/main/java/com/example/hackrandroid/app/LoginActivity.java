@@ -40,5 +40,4 @@ public class LoginActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
 }

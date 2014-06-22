@@ -2,6 +2,7 @@ package com.example.hackrandroid.app;
 
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class LoginMainFragment extends Fragment {
   private EditText usernameView;
   private EditText passwordView;
   private Button loginButton;
+  private Button signUpButton;
 
   public LoginMainFragment() {
   }
@@ -43,6 +45,7 @@ public class LoginMainFragment extends Fragment {
     usernameView = (EditText) rootView.findViewById(R.id.login_username);
     passwordView = (EditText) rootView.findViewById(R.id.login_password);
 
+    signUpButton = (Button) rootView.findViewById(R.id.login_signup);
     loginButton = (Button) rootView.findViewById(R.id.login_submit);
     loginButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -53,6 +56,19 @@ public class LoginMainFragment extends Fragment {
                 getActivity().finish();*/
 
         loginUser();
+      }
+    });
+
+    signUpButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Fragment frag = new LoginProfileFragment();
+        String tag = frag.getTag();
+        FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
+        fragmentTransaction.replace(R.id.container, frag);
+        fragmentTransaction.addToBackStack(tag);
+        fragmentTransaction.commit();
       }
     });
 
