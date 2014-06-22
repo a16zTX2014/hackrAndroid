@@ -12,6 +12,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
 
         <LinearLayout
             android:id="@+id/discover_profile_container"
@@ -35,6 +40,21 @@
 
             </FrameLayout>
 
+            <TextView
+                android:id="@+id/profile_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:textSize="24sp"/>
+            <TextView
+                android:id="@+id/profile_user_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18sp"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -54,31 +74,21 @@
 
                 <TextView
                     android:id="@+id/profile_user2_name"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"/>
                 <TextView
                     android:id="@+id/profile_user2_school"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"/>
 
             </LinearLayout>
+        </FrameLayout>
 
-            <TextView
-                android:id="@+id/profile_user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/white"
-                android:textSize="24sp"/>
-            <TextView
-                android:id="@+id/profile_user_school"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_gravity="center_horizontal"
-                android:textSize="18sp"/>
+
 
             <TextView
                 android:id="@+id/profile_user_skill1"
