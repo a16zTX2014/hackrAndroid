@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    <color name="wet_asphalt">#34495e</color>
+    <color name="midnight_blue">#2c3e50</color>
+    <color name="concrete">#95a5a6</color>
+    <color name="asbetos">#7f8c8d</color>
+    <color name="cloud">#ecf0f1</color>
+
+</resources>
