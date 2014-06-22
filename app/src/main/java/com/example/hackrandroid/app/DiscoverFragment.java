@@ -51,6 +51,7 @@ public class DiscoverFragment extends Fragment {
   static ImageView inner_heart;
   static ImageView inner_nope;
 
+  View hero_border;
   View heartButton;
   View nopeButton;
 
@@ -66,6 +67,8 @@ public class DiscoverFragment extends Fragment {
     pic = (ImageView) rootView.findViewById(R.id.profile_user_image);
     name = (TextView) rootView.findViewById(R.id.profile_user_name);
     school = (TextView) rootView.findViewById(R.id.profile_user_school);
+
+    hero_border = rootView.findViewById(R.id.profile_image_border);
 
     Bitmap bp = ((BitmapDrawable)pic.getDrawable()).getBitmap();
     pic.setImageBitmap(DisplayUtils.getCroppedBitmap(bp));
@@ -104,6 +107,7 @@ public class DiscoverFragment extends Fragment {
           else{
             isAnimating = true;
 
+            hero_border.setBackground(getResources().getDrawable(R.drawable.hero_bg_green));
             inner_heart.animate().scaleX(.6f).scaleY(.6f).setDuration(200).setListener(new Animator.AnimatorListener() {
               @Override
               public void onAnimationStart(Animator animation) {
@@ -113,6 +117,7 @@ public class DiscoverFragment extends Fragment {
               @Override
               public void onAnimationEnd(Animator animation) {
                 inner_heart.animate().scaleX(1f).scaleY(1f).setDuration(200);
+//                hero_border.setBackgroundColor(getResources().getColor(R.color.white));
               }
 
               @Override
@@ -168,6 +173,8 @@ public class DiscoverFragment extends Fragment {
                 currentUser = nextUser;
                 nextUser = usersList.get(index);
 
+                hero_border.setBackground(getResources().getDrawable(R.drawable.hero_bg));
+
                 updateUsers();
 
                 profileContainer.setTranslationX(0);
@@ -204,6 +211,7 @@ public class DiscoverFragment extends Fragment {
 
             isAnimating = true;
 
+            hero_border.setBackground(getResources().getDrawable(R.drawable.hero_bg_red));
             inner_nope.animate().scaleX(.6f).scaleY(.6f).setDuration(200).setListener(new Animator.AnimatorListener() {
               @Override
               public void onAnimationStart(Animator animation) {
@@ -240,6 +248,7 @@ public class DiscoverFragment extends Fragment {
                 index++;
                 currentUser = nextUser;
                 nextUser = usersList.get(index);
+                hero_border.setBackground(getResources().getDrawable(R.drawable.hero_bg));
 
                 updateUsers();
 

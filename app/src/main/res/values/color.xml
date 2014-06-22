@@ -10,4 +10,6 @@
     <color name="cloud">#ecf0f1</color>
     <color name="emerald">#2ecc71</color>
     <color name="alizarin">#e74c3c</color>
+    <color name="blue">#3498db</color>
+    <color name="dark_blue">#2980b9</color>
 </resources>
