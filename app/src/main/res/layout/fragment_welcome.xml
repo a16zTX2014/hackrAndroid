@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment"
-              android:background="#ddd">
+              android:background="#ffffff">
 
     <TextView
         android:id="@+id/login_profile_title"
@@ -26,38 +26,44 @@
         android:layout_marginTop="10dp"/>
 
     <LinearLayout
+        android:layout_below="@id/login_profile_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp"
+        android:orientation="vertical"
         android:layout_centerInParent="true"
         >
 
         <ImageView
             android:id="@+id/profile_user_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/placeholder"
-            />
-        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:id="@+id/profile_user_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="10dp">
-            <EditText
-                android:id="@+id/profile_user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Add your name..."
-                android:textSize="20sp"/>
-            <EditText
-                android:id="@+id/profile_user_school"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Add your school..."
-                android:textSize="20sp"/>
-        </LinearLayout>
+            android:hint="Add your name..."
+            android:textSize="20sp"
+            android:singleLine="true"
+            android:padding="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:nextFocusDown="@+id/profile_user_school"/>
+        <EditText
+            android:id="@+id/profile_user_school"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Add your school..."
+            android:textSize="20sp"
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
     </LinearLayout>
 
     <Button
@@ -65,8 +71,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Next"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textColor="#fff"
+        android:padding="5dp"
         android:layout_alignParentBottom="true"
-        android:background="#353535"/>
+        android:background="#2ecc71"/>
 </RelativeLayout>
