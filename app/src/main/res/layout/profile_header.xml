@@ -4,7 +4,7 @@
               android:layout_height="wrap_content"
               android:orientation="vertical"
               tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment"
-              android:background="@color/emerald"
+              android:background="@color/blue"
               android:padding="5dp">
 
     <FrameLayout
