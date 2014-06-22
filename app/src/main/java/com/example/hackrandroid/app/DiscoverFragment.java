@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.hackrandroid.app.utils.DisplayUtils;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -90,6 +91,33 @@ public class DiscoverFragment extends Fragment {
             Toast.makeText(getActivity(),"You have run out of hackthon attendees :(", Toast.LENGTH_LONG).show();
           }
           else{
+            Log.e("matchee", usersList.get(index).getUsername());
+            ParseQuery<ParseObject> queryWantsToBeMatched = ParseQuery.getQuery("Match");
+            queryWantsToBeMatched.whereEqualTo("matchee", usersList.get(index));
+            queryWantsToBeMatched.whereEqualTo("matcher", ParseUser.getCurrentUser());
+            queryWantsToBeMatched.whereEqualTo("status", 1);
+            queryWantsToBeMatched.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> parseObjects, ParseException e) {
+                    if (e == null) {
+                        if (parseObjects.size() > 0) {
+                            Toast.makeText(getActivity(), "found a match", Toast.LENGTH_LONG).show();
+                            ParseObject parseObject = parseObjects.get(0);
+                            parseObject.put("status", 2);
+                            parseObject.saveInBackground();
+                        } else {
+                            Toast.makeText(getActivity(), "creating intiail match", Toast.LENGTH_LONG).show();
+                            ParseObject match = new ParseObject("Match");
+                            match.put("matchee", ParseUser.getCurrentUser());
+                            match.put("matcher", usersList.get(index));
+                            match.put("status", 1);
+                            match.saveInBackground();
+                        }
+                    }
+                }
+            });
+
+
             isAnimating = true;
             profileContainer2.setTranslationX(-700);
             profileContainer2.setVisibility(View.VISIBLE);

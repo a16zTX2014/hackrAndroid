@@ -58,9 +58,9 @@ public class MatchesFragment extends Fragment {
                       String matcher = parseObjects.get(0).getParseUser("matcher").getUsername();
 
                       if (matchee.equals(currentUser)) {
-                          Log.e("matchee", matchee);
+                          Log.e("matchee", matcher);
                       } else {
-                          Log.e("matcher", matcher);
+                          Log.e("matcher", matchee);
                       }
 
                   }
