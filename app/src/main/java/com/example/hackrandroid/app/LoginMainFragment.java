@@ -124,7 +124,7 @@ public class LoginMainFragment extends Fragment {
                 if (e != null) {
                   Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
                 } else {
-                  MainActivity.saveUserInstallationInfo();
+                  //MainActivity.saveUserInstallationInfo();
                   Toast.makeText(getActivity(), "Logged in successfully", Toast.LENGTH_LONG).show();
                   Intent i = new Intent(getActivity(), MainActivity.class);
                   i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

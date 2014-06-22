@@ -2,6 +2,7 @@ package com.example.hackrandroid.app;
 
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import java.util.ArrayList;
 
@@ -69,14 +74,65 @@ public class LoginSkillsFragment extends Fragment {
     String name = arguments.getString("name");
     String school = arguments.getString("school");
     String username = arguments.getString("username");
-    Toast.makeText(getActivity(), username + " " + name + " " + school, Toast.LENGTH_LONG).show();
+    String password = arguments.getString("password");
+    Toast.makeText(getActivity(), username + " " + password + " " + name + " " + school, Toast.LENGTH_LONG).show();
 
-    
+    ParseUser user = new ParseUser();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.put("name", name);
+        user.put("school", school);
+        user.put("image", arguments.getByteArray("profileImage"));
 
-    Intent i = new Intent(getActivity(), MainActivity.class);
+// other fields can be set just like with ParseObject
+        user.put("phone", "650-253-0000");
+
+        /*user.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    // Hooray! Let them use the app now.
+                    //Toast.makeText(getActivity(), "Succeeded", Toast.LENGTH_SHORT).show();
+                    Log.e("done", "DONE BITCH");
+                } else {
+                    // Sign up didn't succeed. Look at the ParseException
+                    // to figure out what went wrong
+                }
+            }
+        });*/
+
+      final ProgressDialog dlg = new ProgressDialog(getActivity());
+      dlg.setTitle("Please wait.");
+      dlg.setMessage("Attempting to create a new user.");
+      dlg.show();
+      // Try to sign up the user
+      user.signUpInBackground(new SignUpCallback() {
+          @Override
+          public void done(ParseException e) {
+              dlg.dismiss();
+
+              if (e != null) {        // Error signing up, display the error msg
+                  Toast.makeText(getActivity(),
+                          e.getMessage(),
+                          Toast.LENGTH_LONG).show();
+              } else {
+                  // Login successful, go to the MainScreenActivity
+                  Toast.makeText(getActivity(),
+                          "Sign up successful. Presenting the good stuff.",
+                          Toast.LENGTH_LONG).show();
+
+                  MainActivity.saveUserInstallationInfo();
+                  Intent i = new Intent(getActivity(), MainActivity.class);
+                  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                          Intent.FLAG_ACTIVITY_NEW_TASK);
+                  startActivity(i);
+              }
+          }
+      });
+
+    /*  Intent i = new Intent(getActivity(), MainActivity.class);
     i.putExtra("tab_index",2);
     startActivity(i);
-    getActivity().finish();
+    getActivity().finish();*/
   }
 
   private class SkillsAdapter extends ArrayAdapter<Skill> {
