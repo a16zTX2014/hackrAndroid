@@ -77,10 +77,10 @@ public class DiscoverFragment extends Fragment {
       updateUsers();
     }
 
-    DisplayUtils.sourcesSansRegularifyTextView(name);
-    DisplayUtils.sourcesSansRegularifyTextView(name2);
-    DisplayUtils.sourcesSansLightifyTextView(school);
-    DisplayUtils.sourcesSansLightifyTextView(school2);
+    DisplayUtils.openSansRegularifyTextView(name);
+    DisplayUtils.openSansRegularifyTextView(name2);
+    DisplayUtils.openSansLightifyTextView(school);
+    DisplayUtils.openSansLightifyTextView(school2);
 
     heartButton.setOnClickListener(new View.OnClickListener() {
       @Override
