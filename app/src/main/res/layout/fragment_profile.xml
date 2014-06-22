@@ -6,13 +6,35 @@
     tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment"
     android:padding="20dp">
 
-    <TextView
-        android:text="Profile"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="60sp"
-        android:textColor="#353535"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"/>
+        android:background="#eee">
 
+        <ImageView
+            android:id="@+id/profile_user_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/placeholder"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/profile_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Niko Lazaris"
+                android:textSize="24sp"/>
+            <TextView
+                android:id="@+id/profile_user_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="University of Texas in Austin"
+                android:textSize="18sp"/>
+            </LinearLayout>
+        </LinearLayout>
 </LinearLayout>
