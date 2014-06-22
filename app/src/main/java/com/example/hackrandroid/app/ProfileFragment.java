@@ -169,12 +169,12 @@ public class ProfileFragment extends Fragment {
       if (item.isHeader()){
         TextView title = (TextView) v.findViewById(R.id.profile_header_text);
         title.setText(item.getLabel());
-        DisplayUtils.sourcesSansRegularifyTextView(title);
+        DisplayUtils.openSansRegularifyTextView(title);
       }
       else {
         TextView title = (TextView) v.findViewById(R.id.profile_item_text);
         title.setText(item.getLabel());
-        DisplayUtils.sourcesSansLightifyTextView(title);
+        DisplayUtils.openSansLightifyTextView(title);
 
       }
 

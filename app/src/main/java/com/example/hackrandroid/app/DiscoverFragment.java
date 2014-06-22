@@ -5,6 +5,7 @@ import android.animation.Animator;
 import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,6 +48,9 @@ public class DiscoverFragment extends Fragment {
   TextView name2;
   TextView school2;
 
+  static ImageView inner_heart;
+  static ImageView inner_nope;
+
   View heartButton;
   View nopeButton;
 
@@ -63,8 +67,15 @@ public class DiscoverFragment extends Fragment {
     name = (TextView) rootView.findViewById(R.id.profile_user_name);
     school = (TextView) rootView.findViewById(R.id.profile_user_school);
 
+    Bitmap bp = ((BitmapDrawable)pic.getDrawable()).getBitmap();
+    pic.setImageBitmap(DisplayUtils.getCroppedBitmap(bp));
+
     heartButton = rootView.findViewById(R.id.discover_heart_button);
     nopeButton = rootView.findViewById(R.id.discover_nope_button);
+
+    inner_heart = (ImageView) rootView.findViewById(R.id.discover_inner_heart);
+    inner_nope = (ImageView) rootView.findViewById(R.id.discover_inner_nope);
+
 
     profileContainer2 = (LinearLayout) rootView.findViewById(R.id.discover_profile_container2);
     pic2 = (ImageView) rootView.findViewById(R.id.profile_user2_image);
@@ -78,10 +89,10 @@ public class DiscoverFragment extends Fragment {
       updateUsers();
     }
 
-    DisplayUtils.sourcesSansRegularifyTextView(name);
-    DisplayUtils.sourcesSansRegularifyTextView(name2);
-    DisplayUtils.sourcesSansLightifyTextView(school);
-    DisplayUtils.sourcesSansLightifyTextView(school2);
+    DisplayUtils.openSansRegularifyTextView(name);
+    DisplayUtils.openSansRegularifyTextView(name2);
+    DisplayUtils.openSansLightifyTextView(school);
+    DisplayUtils.openSansLightifyTextView(school2);
 
     heartButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -91,6 +102,30 @@ public class DiscoverFragment extends Fragment {
             Toast.makeText(getActivity(),"You have run out of hackthon attendees :(", Toast.LENGTH_LONG).show();
           }
           else{
+            isAnimating = true;
+
+            inner_heart.animate().scaleX(.6f).scaleY(.6f).setDuration(200).setListener(new Animator.AnimatorListener() {
+              @Override
+              public void onAnimationStart(Animator animation) {
+
+              }
+
+              @Override
+              public void onAnimationEnd(Animator animation) {
+                inner_heart.animate().scaleX(1f).scaleY(1f).setDuration(200);
+              }
+
+              @Override
+              public void onAnimationCancel(Animator animation) {
+
+              }
+
+              @Override
+              public void onAnimationRepeat(Animator animation) {
+
+              }
+            });
+
             Log.e("matchee", usersList.get(index).getUsername());
             ParseQuery<ParseObject> queryWantsToBeMatched = ParseQuery.getQuery("Match");
             queryWantsToBeMatched.whereEqualTo("matchee", usersList.get(index));
@@ -118,7 +153,6 @@ public class DiscoverFragment extends Fragment {
             });
 
 
-            isAnimating = true;
             profileContainer2.setTranslationX(-700);
             profileContainer2.setVisibility(View.VISIBLE);
             profileContainer.animate().translationX(700).setDuration(300);
@@ -167,6 +201,30 @@ public class DiscoverFragment extends Fragment {
           }
           else {
             isAnimating = true;
+
+            isAnimating = true;
+
+            inner_nope.animate().scaleX(.6f).scaleY(.6f).setDuration(200).setListener(new Animator.AnimatorListener() {
+              @Override
+              public void onAnimationStart(Animator animation) {
+
+              }
+
+              @Override
+              public void onAnimationEnd(Animator animation) {
+                inner_nope.animate().scaleX(1f).scaleY(1f).setDuration(200);
+              }
+
+              @Override
+              public void onAnimationCancel(Animator animation) {
+
+              }
+
+              @Override
+              public void onAnimationRepeat(Animator animation) {
+
+              }
+            });
 
             profileContainer2.setTranslationX(700);
             profileContainer2.setVisibility(View.VISIBLE);

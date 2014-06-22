@@ -18,22 +18,22 @@ import com.example.hackrandroid.app.R;
 
 public class DisplayUtils {
 
-  private static Typeface sourceSansLight;
-  private static Typeface sourceSansRegular;
+  private static Typeface openSansLight;
+  private static Typeface openSansRegular;
   private static final Typeface sansSerifLight = Typeface.create("sans-serif-light", Typeface.NORMAL);
 
-  public static Typeface getSourceSansLightTypeface(Context context) {
+  public static Typeface getOpenSansLightTypeface(Context context) {
     // Creating pictos from assets requires a reference to a context, which cannot be obtained statically
-    if (sourceSansLight == null)
-      sourceSansLight = Typeface.createFromAsset(context.getAssets(), "fonts/sourceSansProLight.ttf");
-    return sourceSansLight;
+    if (openSansLight == null)
+      openSansLight = Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light.ttf");
+    return openSansLight;
   }
 
-  public static Typeface getSourceSansRegularTypeface(Context context) {
+  public static Typeface getOpenSansRegularTypeface(Context context) {
     // Creating pictos from assets requires a reference to a context, which cannot be obtained statically
-    if (sourceSansRegular == null)
-      sourceSansRegular = Typeface.createFromAsset(context.getAssets(), "fonts/sourceSansProRegular.ttf");
-    return sourceSansRegular;
+    if (openSansRegular == null)
+      openSansRegular = Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Regular.ttf");
+    return openSansRegular;
   }
 
   public static Typeface getSansSerifLight() {
@@ -44,12 +44,12 @@ public class DisplayUtils {
     tv.setTypeface(sansSerifLight);
   }
 
-  public static void sourcesSansLightifyTextView(TextView tv) {
-    tv.setTypeface(getSourceSansLightTypeface(tv.getContext()));
+  public static void openSansLightifyTextView(TextView tv) {
+    tv.setTypeface(getOpenSansLightTypeface(tv.getContext()));
   }
 
-  public static void sourcesSansRegularifyTextView(TextView tv) {
-    tv.setTypeface(getSourceSansRegularTypeface(tv.getContext()));
+  public static void openSansRegularifyTextView(TextView tv) {
+    tv.setTypeface(getOpenSansRegularTypeface(tv.getContext()));
   }
 
   public static void shakeView(View view) {
@@ -63,6 +63,36 @@ public class DisplayUtils {
 
   public static int toPx(int dp) {
     return (int) ((dp * Resources.getSystem().getDisplayMetrics().density) + 0.5);
+  }
+
+  public static Bitmap getCroppedScaledBitmap(Bitmap bitmap, int Xpx, int Ypx) {
+    Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+            bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+    Canvas canvas = new Canvas(output);
+
+    final float borderOffset = 2;
+    final int color = 0xff424242;
+    final Paint paint = new Paint();
+    final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+    paint.setAntiAlias(true);
+    canvas.drawARGB(0, 0, 0, 0);
+    paint.setColor(color);
+    canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+            bitmap.getWidth() / 2, paint);
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    canvas.drawBitmap(bitmap, rect, rect, paint);
+
+//    Paint mPaint = new Paint();
+//    mPaint.setColor(0xFFFFFFFF);
+//    mPaint.setStrokeWidth(borderOffset);
+//    mPaint.setStyle(Paint.Style.STROKE);
+//    mPaint.setAntiAlias(true);
+//    canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+//            bitmap.getWidth() / 2 - (borderOffset / 2), mPaint);
+//    Bitmap _bmp = Bitmap.createScaledBitmap(output, 100, 100, false);
+//    return _bmp;
+    return output;
   }
 
   public static Bitmap getCroppedBitmap(Bitmap bitmap) {
@@ -90,6 +120,36 @@ public class DisplayUtils {
 //    mPaint.setAntiAlias(true);
 //    canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
 //            bitmap.getWidth() / 2 - (borderOffset / 2), mPaint);
+//    Bitmap _bmp = Bitmap.createScaledBitmap(output, 100, 100, false);
+//    return _bmp;
+    return output;
+  }
+
+  public static Bitmap getCroppedBorderedBitmap(Bitmap bitmap) {
+    Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+            bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+    Canvas canvas = new Canvas(output);
+
+    final float borderOffset = 4;
+    final int color = 0xff424242;
+    final Paint paint = new Paint();
+    final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+    paint.setAntiAlias(true);
+    canvas.drawARGB(0, 0, 0, 0);
+    paint.setColor(color);
+    canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+            bitmap.getWidth() / 2, paint);
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    canvas.drawBitmap(bitmap, rect, rect, paint);
+
+    Paint mPaint = new Paint();
+    mPaint.setColor(0x000000);
+    mPaint.setStrokeWidth(borderOffset);
+    mPaint.setStyle(Paint.Style.STROKE);
+    mPaint.setAntiAlias(true);
+    canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+            bitmap.getWidth() / 2 - (borderOffset / 2), mPaint);
 //    Bitmap _bmp = Bitmap.createScaledBitmap(output, 100, 100, false);
 //    return _bmp;
     return output;
