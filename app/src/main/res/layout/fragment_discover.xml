@@ -22,7 +22,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/niko"
+            android:src="@drawable/placeholder"
             android:layout_gravity="center_horizontal"/>
 
         <TextView

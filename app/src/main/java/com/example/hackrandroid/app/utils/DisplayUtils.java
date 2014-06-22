@@ -90,9 +90,9 @@ public class DisplayUtils {
 //    mPaint.setAntiAlias(true);
 //    canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
 //            bitmap.getWidth() / 2 - (borderOffset / 2), mPaint);
-    Bitmap _bmp = Bitmap.createScaledBitmap(output, 100, 100, false);
-    return _bmp;
-//    return output;
+//    Bitmap _bmp = Bitmap.createScaledBitmap(output, 100, 100, false);
+//    return _bmp;
+    return output;
   }
 
 }

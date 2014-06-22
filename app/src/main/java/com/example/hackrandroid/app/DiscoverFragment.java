@@ -207,7 +207,7 @@ public class DiscoverFragment extends Fragment {
 
     bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
 
-    pic.setImageBitmap(bitmap);
+    pic.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap));
     pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
     String userName2 = nextUser.getString("name");
@@ -222,7 +222,7 @@ public class DiscoverFragment extends Fragment {
 
     bitmap2 = Bitmap.createScaledBitmap(bitmap2, 400, 400, false);
 
-    pic2.setImageBitmap(bitmap2);
+    pic2.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap2));
     pic2.setScaleType(ImageView.ScaleType.CENTER_CROP);
   }
 }
