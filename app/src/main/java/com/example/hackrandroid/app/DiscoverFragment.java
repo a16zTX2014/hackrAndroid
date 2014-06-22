@@ -3,9 +3,6 @@ package com.example.hackrandroid.app;
 
 import android.animation.Animator;
 import android.app.Fragment;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -120,7 +117,7 @@ public class DiscoverFragment extends Fragment {
       public void onClick(View v) {
         if (!isAnimating) {
           if (index + 1 >= usersList.size()){
-            Toast.makeText(getActivity(),"You have run out of hackthon attendees :(", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"You have run out of hackthon attendees :(", Toast.LENGTH_SHORT).show();
           }
           else{
             isAnimating = true;
@@ -159,12 +156,12 @@ public class DiscoverFragment extends Fragment {
                 public void done(List<ParseObject> parseObjects, ParseException e) {
                     if (e == null) {
                         if (parseObjects.size() > 0) {
-                            Toast.makeText(getActivity(), "found a match", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "found a match", Toast.LENGTH_SHORT).show();
                             ParseObject parseObject = parseObjects.get(0);
                             parseObject.put("status", 2);
                             parseObject.saveInBackground();
                         } else {
-                            Toast.makeText(getActivity(), "Finding you a match!", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getActivity(), "Finding you a match!", Toast.LENGTH_SHORT).show();
                             ParseObject match = new ParseObject("Match");
                             match.put("matchee", ParseUser.getCurrentUser());
                             match.put("matcher", usersList.get(index));
