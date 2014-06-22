@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.ParseInstallation;
+import com.parse.ParseUser;
+
 
 public class MainActivity extends Activity {
 
@@ -54,5 +57,12 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void saveUserInstallationInfo() {
+        // Associate the device with a user
+        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+        installation.put("user", ParseUser.getCurrentUser());
+        installation.saveInBackground();
     }
 }
