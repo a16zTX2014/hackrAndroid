@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class LoginSkillsFragment extends Fragment {
@@ -28,6 +31,7 @@ public class LoginSkillsFragment extends Fragment {
   ListView skillsListView;
   ArrayList<Skill> skillsList;
   SkillsAdapter adapter;
+  Set<String> skillSet;
 
   public LoginSkillsFragment() {
   }
@@ -41,6 +45,8 @@ public class LoginSkillsFragment extends Fragment {
     Button next = (Button) rootView.findViewById(R.id.login_skills_next);
 
     View header = inflater.inflate(R.layout.skills_header,null,false);
+
+    skillSet = new HashSet<String>();
 
     next.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -82,6 +88,12 @@ public class LoginSkillsFragment extends Fragment {
         user.put("name", name);
         user.put("school", school);
         user.put("image", arguments.getByteArray("profileImage"));
+        //String[] skillsArray = skillSet.toArray(new String[skillSet.size()]);
+        ArrayList<String> skillArray = new ArrayList<String>();
+        skillArray.addAll(skillSet);
+        Log.e("skill size", String.valueOf(skillArray.size()));
+        user.addAll("skills", skillArray);
+
 
 // other fields can be set just like with ParseObject
         user.put("phone", "650-253-0000");
@@ -172,6 +184,16 @@ public class LoginSkillsFragment extends Fragment {
         @Override
         public void onClick(View v) {
           item.toggleSelected();
+
+          if (item.isSelected()) {
+              skillSet.add(item.getName());
+              String[] sarr = skillSet.toArray(new String[skillSet.size()]);
+              Log.e("aray size", String.valueOf(sarr.length));
+              Log.e("ahaha", sarr[0]);
+          } else {
+              skillSet.remove(item.getName());
+          }
+
           adapter.notifyDataSetInvalidated();
         }
       });

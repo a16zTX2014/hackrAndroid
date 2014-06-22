@@ -61,8 +61,7 @@ public class ProfileFragment extends Fragment {
                 byte[] byteArray = parseUser.getBytes("image");
                 bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
                         byteArray.length);
-                //bitmap.setHeight(200);
-                //bitmap.setWidth(200);
+
                 bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
 
                 profileImageView.setImageBitmap(bitmap);
