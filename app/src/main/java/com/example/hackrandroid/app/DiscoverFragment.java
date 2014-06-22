@@ -32,7 +32,7 @@ public class DiscoverFragment extends Fragment {
 
   boolean isAnimating = false;
 
-  static List<ParseUser> usersList;
+  List<ParseUser> usersList;
 
   static ParseUser currentUser;
   static ParseUser nextUser;
