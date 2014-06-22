@@ -18,14 +18,33 @@ public class MainActivity extends Activity {
 
     private int current_frag_index = 0;
 
+    private static final int TAB_DISCOVER = 0;
+    private static final int TAB_MATCHES  = 1;
+    private static final int TAB_PROFILE  = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+      int startingTab = getIntent().getIntExtra("tab_index", 0);
       if (savedInstanceState == null) {
-        getFragmentManager().beginTransaction()
-                .add(R.id.main_container, new DiscoverFragment())
-                .commit();
+        switch(startingTab) {
+          case TAB_DISCOVER:
+          getFragmentManager().beginTransaction()
+                  .add(R.id.main_container, new DiscoverFragment())
+                  .commit();
+            break;
+          case TAB_MATCHES:
+            getFragmentManager().beginTransaction()
+                    .add(R.id.main_container, new MatchesFragment())
+                    .commit();
+            break;
+          case TAB_PROFILE:
+            getFragmentManager().beginTransaction()
+                    .add(R.id.main_container, new ProfileFragment())
+                    .commit();
+            break;
+        }
       }
 
       getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#2c3e50")));
@@ -48,13 +67,13 @@ public class MainActivity extends Activity {
           case R.id.action_settings:
             return true;
           case R.id.discover:
-            slideFragment(current_frag_index, 0);
+            slideFragment(current_frag_index, TAB_DISCOVER);
             break;
           case R.id.matches:
-            slideFragment(current_frag_index, 1);
+            slideFragment(current_frag_index, TAB_MATCHES);
             break;
           case R.id.profile:
-            slideFragment(current_frag_index, 2);
+            slideFragment(current_frag_index, TAB_PROFILE);
             break;
         }
 

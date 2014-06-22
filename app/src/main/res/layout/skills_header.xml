@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment"
+              android:background="@color/concrete">
+
+    <TextView
+        android:id="@+id/login_skills_header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tell Us About Yourself"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        />
+    <TextView
+        android:id="@+id/login_skills_header_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tell Us About Yourself"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        />
+
+</LinearLayout>

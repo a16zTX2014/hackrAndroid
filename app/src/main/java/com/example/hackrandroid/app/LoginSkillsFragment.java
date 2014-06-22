@@ -3,12 +3,14 @@ package com.example.hackrandroid.app;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +32,15 @@ public class LoginSkillsFragment extends Fragment {
                            Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.fragment_login_skills, container, false);
 
+    Button next = (Button) rootView.findViewById(R.id.login_skills_next);
+
+    next.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        finishSignUp();
+      }
+    });
+
     skillsListView = (ListView) rootView.findViewById(R.id.login_skills_list);
 
     skillsList = new ArrayList<Skill>();
@@ -45,6 +56,14 @@ public class LoginSkillsFragment extends Fragment {
 
 
     return rootView;
+  }
+
+  private void finishSignUp(){
+    //TODO: Push To Parse and Log in with Parse
+    Intent i = new Intent(getActivity(), MainActivity.class);
+    i.putExtra("tab_index",2);
+    startActivity(i);
+    getActivity().finish();
   }
 
   private class SkillsAdapter extends ArrayAdapter<Skill> {
