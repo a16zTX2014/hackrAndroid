@@ -28,13 +28,16 @@ public class MainActivity extends Activity {
     private static final int TAB_MATCHES  = 1;
     private static final int TAB_PROFILE  = 2;
 
+    private static String TAG_DISCOVER;
+    private static String TAG_MATCHES;
+    private static String TAG_PROFILE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
       getAllUsers();
-
 
       getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#2c3e50")));
     }

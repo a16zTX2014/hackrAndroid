@@ -29,11 +29,12 @@ public class DiscoverFragment extends Fragment {
 
   boolean isAnimating = false;
 
-  List<ParseUser> usersList;
+  static List<ParseUser> usersList;
 
-  ParseUser currentUser;
-  ParseUser nextUser;
-  int index;
+  static ParseUser currentUser;
+  static ParseUser nextUser;
+  static int index;
+  static boolean onStart = true;
 
   LinearLayout profileContainer;
   ImageView pic;
@@ -69,12 +70,17 @@ public class DiscoverFragment extends Fragment {
     name2 = (TextView) rootView.findViewById(R.id.profile_user2_name);
     school2 = (TextView) rootView.findViewById(R.id.profile_user2_school);
 
+    if (onStart){
+      getUsers();
+    }
+    else{
+      updateUsers();
+    }
+
     DisplayUtils.sourcesSansRegularifyTextView(name);
     DisplayUtils.sourcesSansRegularifyTextView(name2);
     DisplayUtils.sourcesSansLightifyTextView(school);
     DisplayUtils.sourcesSansLightifyTextView(school2);
-
-    getUsers();
 
     heartButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -184,13 +190,14 @@ public class DiscoverFragment extends Fragment {
       public void done(List<ParseUser> parseUsers, ParseException e) {
         if (e == null) {
 
-                Log.e("size", String.valueOf(parseUsers.size()));
-                currentUser = parseUsers.get(index);
-                nextUser = parseUsers.get(index + 1);
-                updateUsers();
-
-
+          Log.e("size", String.valueOf(parseUsers.size()));
+          currentUser = parseUsers.get(index);
+          nextUser = parseUsers.get(index + 1);
           usersList = parseUsers;
+          if (onStart){
+            updateUsers();
+            onStart = false;
+          }
         } else {
           Log.e("error", "error");
         }
@@ -213,6 +220,7 @@ public class DiscoverFragment extends Fragment {
 
     pic.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap));
     pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    Log.e("userID", currentUser.getObjectId());
 
     String userName2 = nextUser.getString("name");
     name.setText(userName2);
@@ -223,6 +231,7 @@ public class DiscoverFragment extends Fragment {
     byte[] byteArray2 = nextUser.getBytes("image");
     Bitmap bitmap2 = BitmapFactory.decodeByteArray(byteArray2, 0,
             byteArray2.length);
+    Log.e("nextUser", nextUser.getObjectId());
 
     bitmap2 = Bitmap.createScaledBitmap(bitmap2, 400, 400, false);
 
