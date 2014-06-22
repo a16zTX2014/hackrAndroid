@@ -175,17 +175,21 @@ public class DiscoverFragment extends Fragment {
   }
 
   private void getUsers() {
-    String currentUserName = ParseUser.getCurrentUser().getUsername();
 
+
+    String currentUserName = ParseUser.getCurrentUser().getUsername();
     ParseQuery<ParseUser> query = ParseUser.getQuery();
     query.fromLocalDatastore().whereNotEqualTo("username", currentUserName).findInBackground(new FindCallback<ParseUser>() {
       @Override
       public void done(List<ParseUser> parseUsers, ParseException e) {
         if (e == null) {
-          Log.e("size", String.valueOf(parseUsers.size()));
-          currentUser = parseUsers.get(index);
-          nextUser = parseUsers.get(index + 1);
-          updateUsers();
+
+                Log.e("size", String.valueOf(parseUsers.size()));
+                currentUser = parseUsers.get(index);
+                nextUser = parseUsers.get(index + 1);
+                updateUsers();
+
+
           usersList = parseUsers;
         } else {
           Log.e("error", "error");

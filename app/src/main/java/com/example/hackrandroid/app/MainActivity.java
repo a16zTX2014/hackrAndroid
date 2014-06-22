@@ -34,26 +34,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
       getAllUsers();
-      int startingTab = getIntent().getIntExtra("tab_index", 0);
-      if (savedInstanceState == null) {
-        switch(startingTab) {
-          case TAB_DISCOVER:
-          getFragmentManager().beginTransaction()
-                  .add(R.id.main_container, new DiscoverFragment())
-                  .commit();
-            break;
-          case TAB_MATCHES:
-            getFragmentManager().beginTransaction()
-                    .add(R.id.main_container, new MatchesFragment())
-                    .commit();
-            break;
-          case TAB_PROFILE:
-            getFragmentManager().beginTransaction()
-                    .add(R.id.main_container, new ProfileFragment())
-                    .commit();
-            break;
-        }
-      }
+
 
       getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#2c3e50")));
     }
@@ -134,6 +115,27 @@ public class MainActivity extends Activity {
                 if (e == null) {
                     Log.e("size", String.valueOf(parseUsers.size()));
                     ParseUser.pinAllInBackground(parseUsers);
+
+                    int startingTab = getIntent().getIntExtra("tab_index", 0);
+                    //if (savedInstanceState == null) {
+                        switch(startingTab) {
+                            case TAB_DISCOVER:
+                                getFragmentManager().beginTransaction()
+                                        .add(R.id.main_container, new DiscoverFragment())
+                                        .commit();
+                                break;
+                            case TAB_MATCHES:
+                                getFragmentManager().beginTransaction()
+                                        .add(R.id.main_container, new MatchesFragment())
+                                        .commit();
+                                break;
+                            case TAB_PROFILE:
+                                getFragmentManager().beginTransaction()
+                                        .add(R.id.main_container, new ProfileFragment())
+                                        .commit();
+                                break;
+                        }
+                   // }
                 } else {
                     Log.e("error", "error getting list of all parse users");
                 }
