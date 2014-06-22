@@ -12,15 +12,13 @@
         android:layout_height="wrap_content"
         android:text="Tell Us About Yourself"
         android:textSize="20sp"
-        android:layout_margin="20dp"
         />
     <TextView
         android:id="@+id/login_skills_header_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tell Us About Yourself"
+        android:text="Select what describes you"
         android:textSize="20sp"
-        android:layout_margin="20dp"
         />
 
 </LinearLayout>

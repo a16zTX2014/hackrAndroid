@@ -34,6 +34,8 @@ public class LoginSkillsFragment extends Fragment {
 
     Button next = (Button) rootView.findViewById(R.id.login_skills_next);
 
+    View header = inflater.inflate(R.layout.skills_header,null,false);
+
     next.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -42,6 +44,7 @@ public class LoginSkillsFragment extends Fragment {
     });
 
     skillsListView = (ListView) rootView.findViewById(R.id.login_skills_list);
+    skillsListView.addHeaderView(header);
 
     skillsList = new ArrayList<Skill>();
     skillsList.add(new Skill("Web Development"));
