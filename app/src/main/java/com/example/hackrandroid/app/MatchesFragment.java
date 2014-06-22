@@ -37,23 +37,33 @@ public class MatchesFragment extends Fragment {
 
       ArrayList<ParseQuery<ParseObject>> parseQueryArrayList = new ArrayList<ParseQuery<ParseObject>>();
       ParseUser user = ParseUser.getCurrentUser();
-      String currentUser = user.getUsername();
+      final String currentUser = user.getUsername();
+      Log.e("current user", currentUser);
 
       ParseQuery<ParseObject> query = ParseQuery.getQuery("Match");
-      query.fromLocalDatastore().whereEqualTo("matchee", currentUser).whereEqualTo("status", 2);
+      query.whereEqualTo("matchee", user).whereEqualTo("status", 2);
+      parseQueryArrayList.add(query);
 
       ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Match");
-      query.fromLocalDatastore().whereEqualTo("matcher", currentUser).whereEqualTo("status", 2);
-      parseQueryArrayList.add(query);
+      query2.whereEqualTo("matcher", user).whereEqualTo("status", 2);
       parseQueryArrayList.add(query2);
 
-      ParseQuery.or(parseQueryArrayList).findInBackground(new FindCallback() {
+      ParseQuery.or(parseQueryArrayList).findInBackground(new FindCallback<ParseObject>() {
           @Override
-          public void done(List list, ParseException e) {
+          public void done(List<ParseObject> parseObjects, ParseException e) {
               if (e == null) {
-                  Log.e("no error", "no error");
-              } else {
-                  Log.e("there was an error", "there was an error");
+                  Log.e("size", String.valueOf(parseObjects.size()));
+                  for (int i = 0; i < parseObjects.size(); i++) {
+                      String matchee = parseObjects.get(0).getParseUser("matchee").getUsername();
+                      String matcher = parseObjects.get(0).getParseUser("matcher").getUsername();
+
+                      if (matchee.equals(currentUser)) {
+                          Log.e("matchee", matchee);
+                      } else {
+                          Log.e("matcher", matcher);
+                      }
+
+                  }
               }
           }
       });
