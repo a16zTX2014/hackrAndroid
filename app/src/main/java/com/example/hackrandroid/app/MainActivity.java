@@ -7,11 +7,17 @@ import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseInstallation;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.List;
 
 
 public class MainActivity extends Activity {
@@ -26,6 +32,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+      getAllUsers();
       int startingTab = getIntent().getIntExtra("tab_index", 0);
       if (savedInstanceState == null) {
         switch(startingTab) {
@@ -116,5 +124,20 @@ public class MainActivity extends Activity {
           return new ProfileFragment();
       }
       return null;
+    }
+
+    public void getAllUsers() {
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> parseUsers, ParseException e) {
+                if (e == null) {
+                    Log.e("size", String.valueOf(parseUsers.size()));
+                    ParseUser.pinAllInBackground(parseUsers);
+                } else {
+                    Log.e("error", "error getting list of all parse users");
+                }
+            }
+        });
     }
 }
