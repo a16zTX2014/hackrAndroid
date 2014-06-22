@@ -213,7 +213,7 @@ public class DiscoverFragment extends Fragment {
 
     String currentUserName = ParseUser.getCurrentUser().getUsername();
     ParseQuery<ParseUser> query = ParseUser.getQuery();
-    query.fromLocalDatastore().whereNotEqualTo("username", currentUserName).findInBackground(new FindCallback<ParseUser>() {
+    query.whereNotEqualTo("username", currentUserName).findInBackground(new FindCallback<ParseUser>() {
       @Override
       public void done(List<ParseUser> parseUsers, ParseException e) {
         if (e == null) {
