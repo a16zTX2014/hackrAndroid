@@ -313,20 +313,26 @@ public class DiscoverFragment extends Fragment {
     name.setText(userName);
     String schoolName = currentUser.getString("school");
     school.setText(schoolName);
-    ArrayList<String> skills = (ArrayList<String>)currentUser.get("skills");
 
-    if (skills.size() == 1) {
-      skill1.setText(skills.get(0));
-      skill1.setVisibility(View.VISIBLE);
+    try {
+      ArrayList<String> skills = (ArrayList<String>)currentUser.get("skills");
+
+      if (skills.size() >= 3) {
+        skill3.setText(skills.get(2));
+        skill3.setVisibility(View.VISIBLE);
+      } else { skill3.setVisibility(View.INVISIBLE);}
+      if (skills.size() >= 2) {
+        skill2.setText(skills.get(1));
+        skill2.setVisibility(View.VISIBLE);
+      } else { skill2.setVisibility(View.INVISIBLE);}
+      if (skills.size() >= 1) {
+        skill1.setText(skills.get(0));
+        skill1.setVisibility(View.VISIBLE);
+      } else { skill1.setVisibility(View.INVISIBLE);}
+
+    } catch (Exception e) {
     }
-    else if (skills.size() == 2) {
-      skill1.setText(skills.get(1));
-      skill1.setVisibility(View.VISIBLE);
-    }
-    else if (skills.size() == 3) {
-      skill1.setText(skills.get(2));
-      skill1.setVisibility(View.VISIBLE);
-    }
+
     if (currentUser.has("image")) {
       byte[] byteArray = currentUser.getBytes("image");
       Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
