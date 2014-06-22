@@ -4,8 +4,7 @@
               android:layout_height="wrap_content"
               android:orientation="horizontal"
               tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment"
-
-              >
+              android:background="@color/white">
 
     <TextView
         android:id="@+id/profile_header_text"
@@ -14,6 +13,7 @@
         android:text="Item"
         android:textSize="20sp"
         android:layout_marginTop="5dp"
+        android:background="@color/white"
         android:layout_marginLeft="20dp"
         />
 
