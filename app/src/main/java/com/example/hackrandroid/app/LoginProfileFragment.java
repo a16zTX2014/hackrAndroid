@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.hackrandroid.app.utils.DisplayUtils;
+
 import java.io.ByteArrayOutputStream;
 
 
@@ -87,7 +89,7 @@ public class LoginProfileFragment extends Fragment {
                 bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
                         byteArray.length);
 
-                profileImage.setImageBitmap(bitmap);
+                profileImage.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap));
 
             }
         }

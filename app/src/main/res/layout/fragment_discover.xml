@@ -29,13 +29,13 @@
             android:id="@+id/profile_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Niko Lazaris"
+            android:layout_gravity="center_horizontal"
             android:textSize="24sp"/>
         <TextView
             android:id="@+id/profile_user_school"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="University of Texas in Austin"
+            android:layout_gravity="center_horizontal"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -59,13 +59,11 @@
             android:id="@+id/profile_user2_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Niko Lazaris"
             android:textSize="24sp"/>
         <TextView
             android:id="@+id/profile_user2_school"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="University of Texas in Austin"
             android:textSize="18sp"/>
 
     </LinearLayout>

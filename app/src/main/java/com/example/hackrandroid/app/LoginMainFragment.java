@@ -62,6 +62,32 @@ public class LoginMainFragment extends Fragment {
     signUpButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+
+        boolean validationError = false;
+        StringBuilder validationErrorMessage = new StringBuilder("Error loggin in");
+
+        //Check the usernameView
+        if (isEmpty(usernameView)) {
+          validationError = true;
+          validationErrorMessage.append("Username field is blank. You call yourself a hacker?");
+        }
+
+        //Check the passwordView
+        if (isEmpty(passwordView)) {
+          if (validationError) {
+            validationErrorMessage.append("Password field is blank too. You're so dumb");
+          } else {
+            validationError = true;
+            validationErrorMessage.append("Password field is blank. Lame...");
+          }
+        }
+
+        //Check if the validation error is true
+        if (validationError) {
+          Toast.makeText(getActivity(), validationErrorMessage.toString(),
+                  Toast.LENGTH_LONG).show();
+          return;
+        }
         Fragment frag = new LoginProfileFragment();
         String tag = frag.getTag();
         Bundle arguments = new Bundle();
