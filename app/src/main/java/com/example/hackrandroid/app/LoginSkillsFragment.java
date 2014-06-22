@@ -59,9 +59,9 @@ public class LoginSkillsFragment extends Fragment {
     skillsListView.addHeaderView(header);
 
     skillsList = new ArrayList<Skill>();
-    skillsList.add(new Skill("Web Development"));
-    skillsList.add(new Skill("iOS Development"));
-    skillsList.add(new Skill("Android Development"));
+    skillsList.add(new Skill("Web Dev"));
+    skillsList.add(new Skill("iOS Dev"));
+    skillsList.add(new Skill("Android Dev"));
     skillsList.add(new Skill("Frontend Wizard"));
     skillsList.add(new Skill("Idea Machine"));
     skillsList.add(new Skill("Backend Ninja"));

@@ -328,9 +328,9 @@ public class DiscoverFragment extends Fragment {
       Log.e("userID", currentUser.getObjectId());
     }
     String userName2 = nextUser.getString("name");
-    name.setText(userName2);
+    name2.setText(userName2);
     String schoolName2 = nextUser.getString("school");
-    school.setText(schoolName2);
+    school2.setText(schoolName2);
 
     if (nextUser.has("image")) {
       byte[] byteArray2 = nextUser.getBytes("image");
