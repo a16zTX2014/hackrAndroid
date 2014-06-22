@@ -175,7 +175,7 @@ public class DiscoverFragment extends Fragment {
 
             profileContainer2.setTranslationX(-700);
             profileContainer2.setVisibility(View.VISIBLE);
-            profileContainer.animate().translationX(700).setDuration(300);
+            profileContainer2.animate().translationX(700).setDuration(300);
             profileContainer2.animate().translationX(0).setDuration(300).setInterpolator(new AccelerateDecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
               @Override
               public void onAnimationStart(Animator animation) {
@@ -303,6 +303,7 @@ public class DiscoverFragment extends Fragment {
                 currentUser = parseUsers.get(index);
                 nextUser = parseUsers.get(index + 1);
                 usersList = parseUsers;
+                index++;
                 if (onStart) {
                     updateUsers();
                     onStart = false;
