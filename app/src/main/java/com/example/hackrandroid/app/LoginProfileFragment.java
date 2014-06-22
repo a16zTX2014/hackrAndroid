@@ -18,7 +18,7 @@ public class LoginProfileFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    View rootView = inflater.inflate(R.layout.fragment_login_profile, container, false);
+    View rootView = inflater.inflate(R.layout.fragment_welcome, container, false);
 
     Button next = (Button) rootView.findViewById(R.id.login_profile_next);
     next.setOnClickListener(new View.OnClickListener() {
