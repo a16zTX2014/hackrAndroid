@@ -60,6 +60,9 @@ public class DiscoverFragment extends Fragment {
   View heartButton;
   View nopeButton;
 
+  ImageView cloud1;
+  ImageView cloud2;
+
   public DiscoverFragment() {
   }
 
@@ -72,6 +75,11 @@ public class DiscoverFragment extends Fragment {
     pic = (ImageView) rootView.findViewById(R.id.profile_user_image);
     name = (TextView) rootView.findViewById(R.id.profile_user_name);
     school = (TextView) rootView.findViewById(R.id.profile_user_school);
+
+    cloud1 = (ImageView) rootView.findViewById(R.id.cloud1);
+    cloud2 = (ImageView) rootView.findViewById(R.id.cloud2);
+
+    startCloudAnim();
 
     hero_border = rootView.findViewById(R.id.profile_image_border);
 
@@ -175,7 +183,7 @@ public class DiscoverFragment extends Fragment {
 
             profileContainer2.setTranslationX(-700);
             profileContainer2.setVisibility(View.VISIBLE);
-            profileContainer2.animate().translationX(700).setDuration(300);
+            profileContainer.animate().translationX(700).setDuration(300);
             profileContainer2.animate().translationX(0).setDuration(300).setInterpolator(new AccelerateDecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
               @Override
               public void onAnimationStart(Animator animation) {
@@ -367,5 +375,19 @@ public class DiscoverFragment extends Fragment {
       pic2.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap2));
       pic2.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
+  }
+
+  private void startCloudAnim(){
+    cloud1.setX(-300);
+    cloud1.setY(100);
+    cloud2.setX(800);
+    cloud2.setY(300);
+
+    cloud1.setVisibility(View.VISIBLE);
+    cloud2.setVisibility(View.VISIBLE);
+
+    cloud1.animate().translationX(1000).setDuration(40000);
+    cloud2.animate().translationX(-500).setDuration(40000);
+
   }
 }

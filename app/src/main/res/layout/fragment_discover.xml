@@ -17,6 +17,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
+            <ImageView
+                android:id="@+id/cloud1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:visibility="gone"
+                android:src="@drawable/cloud1"/>
+
+            <ImageView
+                android:id="@+id/cloud2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                android:src="@drawable/cloud1"/>
+
 
         <LinearLayout
             android:id="@+id/discover_profile_container"
