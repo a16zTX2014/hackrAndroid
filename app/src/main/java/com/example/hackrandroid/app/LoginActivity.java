@@ -10,7 +10,6 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      getActionBar().hide();
       setContentView(R.layout.activity_login);
 //      getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         if (savedInstanceState == null) {
