@@ -4,25 +4,36 @@
               android:layout_height="wrap_content"
               android:orientation="horizontal"
               tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment"
-              android:background="#fff">
+              >
 
     <TextView
-        android:id="@+id/login_skills_item_text"
+        android:id="@+id/profile_header_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Skill"
+        android:text="Item"
         android:textSize="20sp"
-        android:layout_margin="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
         />
 
-    <ImageView
-        android:id="@+id/login_skills_item_icon"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/checkmark"
+    <TextView
+        android:id="@+id/profile_header_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:text="Edit"
         android:layout_marginRight="20dp"
         android:layout_centerVertical="true"
-        android:visibility="invisible"
+        android:textSize="18sp"/>
+
+    <View
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#888"
+        android:layout_alignParentBottom="true"
+        android:alpha=".8"
         />
+
 </RelativeLayout>

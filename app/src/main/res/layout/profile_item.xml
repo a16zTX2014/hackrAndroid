@@ -7,12 +7,13 @@
               android:background="#fff">
 
     <TextView
-        android:id="@+id/login_skills_item_text"
+        android:id="@+id/profile_item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Skill"
+        android:text="Item"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
         android:textSize="20sp"
-        android:layout_margin="20dp"
         />
 
     <ImageView
@@ -23,6 +24,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_centerVertical="true"
-        android:visibility="invisible"
+        android:visibility="gone"
         />
 </RelativeLayout>

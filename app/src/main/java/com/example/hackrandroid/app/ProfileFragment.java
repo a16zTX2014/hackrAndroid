@@ -4,9 +4,8 @@ package com.example.hackrandroid.app;
 import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.hackrandroid.app.utils.DisplayUtils;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
@@ -27,6 +27,12 @@ public class ProfileFragment extends Fragment {
   private Bitmap bitmap;
   private ImageView profileImageView;
 
+  ProfileAdapter adapter;
+
+  ParseUser currentUser;
+
+  ArrayList<ProfileItem> profileItemList;
+
   public ProfileFragment() {
   }
 
@@ -35,50 +41,47 @@ public class ProfileFragment extends Fragment {
                            Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
+    currentUser = ParseUser.getCurrentUser();
+
+
+
+    //TODO: Get Current User from Parse
+    profileItemList = new ArrayList<ProfileItem>();
+    profileItemList.add(new ProfileItem("Basic Descriptions", true));
+    profileItemList.add(new ProfileItem((String)currentUser.get("name"), false ));
+    profileItemList.add(new ProfileItem((String)currentUser.get("school"), false));
+
+    profileItemList.add(new ProfileItem("Skills", true));
+
+    ArrayList<String> skills =(ArrayList<String>) currentUser.get("skills");
+    for (int i = 0; i < skills.size(); ++i){
+      profileItemList.add(new ProfileItem(skills.get(i), false));
+    }
+
     View header = inflater.inflate(R.layout.profile_header, null, false);
 
     ImageView profilePic = (ImageView) header.findViewById(R.id.profile_header_image);
-    Bitmap bmp = ((BitmapDrawable)profilePic.getDrawable()).getBitmap();
-    profilePic.setImageBitmap(DisplayUtils.getCroppedBitmap(bmp));
+
+
+    byte[] byteArray = currentUser.getBytes("image");
+    bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
+            byteArray.length);
+
+    bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
+
+    profilePic.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap));
+    profilePic.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
     ListView profileListView = (ListView) rootView.findViewById(R.id.profile_list);
 
-    profileListView.addHeaderView(header);
+    adapter = new ProfileAdapter(getActivity(),profileItemList);
 
-//    DisplayUtils.sourcesSansRegularifyTextView(nameTextView);
-//    DisplayUtils.sourcesSansLightifyTextView(schoolTextView);
-//
-//    String currentUser = ParseUser.getCurrentUser().getUsername();
-//
-//    ParseQuery<ParseUser> query = ParseUser.getQuery();
-//    query.fromLocalDatastore().whereEqualTo("username", currentUser).findInBackground(new FindCallback<ParseUser>() {
-//        @Override
-//        public void done(List<ParseUser> parseUsers, ParseException e) {
-//            if (e == null) {
-//                Log.e("size", String.valueOf(parseUsers.size()));
-//                ParseUser parseUser = parseUsers.get(0);
-//                String schoolName = parseUser.getString("school");
-//                schoolTextView.setText(schoolName);
-//
-//                String userName = parseUser.getString("name");
-//                nameTextView.setText(userName);
-//
-//                byte[] byteArray = parseUser.getBytes("image");
-//                bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
-//                        byteArray.length);
-//
-//                bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
-//
-//                profileImageView.setImageBitmap(bitmap);
-//                profileImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//            } else {
-//                Log.e("error", "error");
-//            }
-//        }
-//    });
+    profileListView.addHeaderView(header);
+    profileListView.setAdapter(adapter);
 
     return rootView;
   }
+
 
   private class ProfileAdapter extends ArrayAdapter<ProfileItem>{
 
@@ -104,6 +107,14 @@ public class ProfileFragment extends Fragment {
       }
 
       if (item.isHeader()){
+        TextView title = (TextView) v.findViewById(R.id.profile_header_text);
+        title.setText(item.getLabel());
+        DisplayUtils.sourcesSansRegularifyTextView(title);
+      }
+      else {
+        TextView title = (TextView) v.findViewById(R.id.profile_item_text);
+        title.setText(item.getLabel());
+        DisplayUtils.sourcesSansLightifyTextView(title);
 
       }
 
