@@ -3,6 +3,9 @@ package com.example.hackrandroid.app;
 
 import android.animation.Animator;
 import android.app.Fragment;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -106,7 +109,13 @@ public class DiscoverFragment extends Fragment {
     DisplayUtils.openSansLightifyTextView(school);
     DisplayUtils.openSansLightifyTextView(school2);
 
-    heartButton.setOnClickListener(new View.OnClickListener() {
+      /*NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+      Notification notification = new Notification(R.drawable.ic_launcher, "New Message", System.currentTimeMillis());
+      notification.setLatestEventInfo(getActivity(), "haha", "", null);
+      notificationManager.notify(9999, notification);
+      */
+
+      heartButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if (!isAnimating) {
@@ -289,22 +298,22 @@ public class DiscoverFragment extends Fragment {
     String currentUserName = ParseUser.getCurrentUser().getUsername();
     ParseQuery<ParseUser> query = ParseUser.getQuery();
     query.whereNotEqualTo("username", currentUserName).findInBackground(new FindCallback<ParseUser>() {
-      @Override
-      public void done(List<ParseUser> parseUsers, ParseException e) {
-        if (e == null) {
+        @Override
+        public void done(List<ParseUser> parseUsers, ParseException e) {
+            if (e == null) {
 
-          Log.e("size", String.valueOf(parseUsers.size()));
-          currentUser = parseUsers.get(index);
-          nextUser = parseUsers.get(index + 1);
-          usersList = parseUsers;
-          if (onStart){
-            updateUsers();
-            onStart = false;
-          }
-        } else {
-          Log.e("error", "error");
+                Log.e("size", String.valueOf(parseUsers.size()));
+                currentUser = parseUsers.get(index);
+                nextUser = parseUsers.get(index + 1);
+                usersList = parseUsers;
+                if (onStart) {
+                    updateUsers();
+                    onStart = false;
+                }
+            } else {
+                Log.e("error", "error");
+            }
         }
-      }
     });
   }
 
