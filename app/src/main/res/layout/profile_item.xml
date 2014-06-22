@@ -4,7 +4,7 @@
               android:layout_height="wrap_content"
               android:orientation="horizontal"
               tools:context="com.example.hackrandroid.app.LoginActivity$PlaceholderFragment"
-              android:background="#fff">
+              android:background="#ffffff">
 
     <TextView
         android:id="@+id/profile_item_text"

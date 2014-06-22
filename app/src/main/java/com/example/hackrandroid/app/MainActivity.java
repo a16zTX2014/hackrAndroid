@@ -39,7 +39,8 @@ public class MainActivity extends Activity {
 
       getAllUsers();
 
-      getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#2c3e50")));
+      getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+      getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#3498db")));
     }
 
 
