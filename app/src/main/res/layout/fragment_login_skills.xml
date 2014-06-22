@@ -61,7 +61,6 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/login_profile_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Next"
