@@ -70,6 +70,12 @@ public class LoginActivity extends Activity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_login, container, false);
 
+            if (ParseUser.getCurrentUser() != null) {
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
+                getActivity().finish();
+            }
+
             usernameView = (EditText) rootView.findViewById(R.id.login_username);
             passwordView = (EditText) rootView.findViewById(R.id.login_password);
 
@@ -133,10 +139,12 @@ public class LoginActivity extends Activity {
                             if (e != null) {
                                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
                             } else {
+                                MainActivity.saveUserInstallationInfo();
                                 Toast.makeText(getActivity(), "Logged in successfully", Toast.LENGTH_LONG).show();
                                 Intent i = new Intent(getActivity(), MainActivity.class);
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
+                                getActivity().finish();
                             }
                         }
                     });

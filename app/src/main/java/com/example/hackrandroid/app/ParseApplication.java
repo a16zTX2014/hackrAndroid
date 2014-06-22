@@ -19,9 +19,9 @@ public class ParseApplication extends Application {
         testObject.saveInBackground();*/
 
         /*ParseUser user = new ParseUser();
-        user.setUsername("saiavala");
-        user.setPassword("uTexas1!");
-        user.setEmail("email@example.com");
+        user.setUsername("nikoniko");
+        user.setPassword("nikoniko");
+        user.setEmail("nikolazaris@gmail.com");
 
 // other fields can be set just like with ParseObject
         user.put("phone", "650-253-0000");
