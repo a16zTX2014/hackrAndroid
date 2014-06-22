@@ -25,9 +25,9 @@ public class DisplayUtils {
 
   public static Typeface getSourceSansRegularTypeface(Context context) {
     // Creating pictos from assets requires a reference to a context, which cannot be obtained statically
-    if (sourceSansLight == null)
-      sourceSansLight = Typeface.createFromAsset(context.getAssets(), "fonts/sourceSansProRegular.ttf");
-    return sourceSansLight;
+    if (sourceSansRegular == null)
+      sourceSansRegular = Typeface.createFromAsset(context.getAssets(), "fonts/sourceSansProRegular.ttf");
+    return sourceSansRegular;
   }
 
   public static Typeface getSansSerifLight() {
