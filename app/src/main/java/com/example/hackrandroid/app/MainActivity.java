@@ -4,6 +4,8 @@ package com.example.hackrandroid.app;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +27,8 @@ public class MainActivity extends Activity {
                 .add(R.id.main_container, new DiscoverFragment())
                 .commit();
       }
+
+      getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#2c3e50")));
     }
 
 

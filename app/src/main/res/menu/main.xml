@@ -1,7 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.hackrandroid.app.MainActivity" >
+    tools:context="com.example.hackrandroid.app.MainActivity"
+    >
     <item android:id="@+id/discover"
         android:title="Discover"
         android:showAsAction="always"/>
