@@ -181,13 +181,15 @@ public class DiscoverFragment extends Fragment {
   }
 
   private void getUsers() {
-    String currentUserName = ParseUser.getCurrentUser().getUsername();
 
+
+    String currentUserName = ParseUser.getCurrentUser().getUsername();
     ParseQuery<ParseUser> query = ParseUser.getQuery();
     query.fromLocalDatastore().whereNotEqualTo("username", currentUserName).findInBackground(new FindCallback<ParseUser>() {
       @Override
       public void done(List<ParseUser> parseUsers, ParseException e) {
         if (e == null) {
+
           Log.e("size", String.valueOf(parseUsers.size()));
           currentUser = parseUsers.get(index);
           nextUser = parseUsers.get(index + 1);
@@ -218,6 +220,7 @@ public class DiscoverFragment extends Fragment {
 
     pic.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap));
     pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    Log.e("userID", currentUser.getObjectId());
 
     String userName2 = nextUser.getString("name");
     name.setText(userName2);
@@ -228,6 +231,7 @@ public class DiscoverFragment extends Fragment {
     byte[] byteArray2 = nextUser.getBytes("image");
     Bitmap bitmap2 = BitmapFactory.decodeByteArray(byteArray2, 0,
             byteArray2.length);
+    Log.e("nextUser", nextUser.getObjectId());
 
     bitmap2 = Bitmap.createScaledBitmap(bitmap2, 400, 400, false);
 
