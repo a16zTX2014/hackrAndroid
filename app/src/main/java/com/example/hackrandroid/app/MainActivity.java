@@ -116,7 +116,7 @@ public class MainActivity extends Activity {
             @Override
             public void done(List<ParseUser> parseUsers, ParseException e) {
                 if (e == null) {
-                    Log.e("size", String.valueOf(parseUsers.size()));
+                    Log.e("size in main", String.valueOf(parseUsers.size()));
                     ParseUser.pinAllInBackground(parseUsers);
 
                     int startingTab = getIntent().getIntExtra("tab_index", 0);
