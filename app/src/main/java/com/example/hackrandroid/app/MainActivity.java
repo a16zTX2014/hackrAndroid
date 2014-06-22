@@ -28,6 +28,10 @@ public class MainActivity extends Activity {
     private static final int TAB_MATCHES  = 1;
     private static final int TAB_PROFILE  = 2;
 
+    private static String TAG_DISCOVER;
+    private static String TAG_MATCHES;
+    private static String TAG_PROFILE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,7 @@ public class MainActivity extends Activity {
       getAllUsers();
       int startingTab = getIntent().getIntExtra("tab_index", 0);
       if (savedInstanceState == null) {
+
         switch(startingTab) {
           case TAB_DISCOVER:
           getFragmentManager().beginTransaction()

@@ -29,11 +29,12 @@ public class DiscoverFragment extends Fragment {
 
   boolean isAnimating = false;
 
-  List<ParseUser> usersList;
+  static List<ParseUser> usersList;
 
-  ParseUser currentUser;
-  ParseUser nextUser;
-  int index;
+  static ParseUser currentUser;
+  static ParseUser nextUser;
+  static int index;
+  static boolean onStart = true;
 
   LinearLayout profileContainer;
   ImageView pic;
@@ -69,12 +70,17 @@ public class DiscoverFragment extends Fragment {
     name2 = (TextView) rootView.findViewById(R.id.profile_user2_name);
     school2 = (TextView) rootView.findViewById(R.id.profile_user2_school);
 
+    if (onStart){
+      getUsers();
+    }
+    else{
+      updateUsers();
+    }
+
     DisplayUtils.sourcesSansRegularifyTextView(name);
     DisplayUtils.sourcesSansRegularifyTextView(name2);
     DisplayUtils.sourcesSansLightifyTextView(school);
     DisplayUtils.sourcesSansLightifyTextView(school2);
-
-    getUsers();
 
     heartButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -185,8 +191,11 @@ public class DiscoverFragment extends Fragment {
           Log.e("size", String.valueOf(parseUsers.size()));
           currentUser = parseUsers.get(index);
           nextUser = parseUsers.get(index + 1);
-          updateUsers();
           usersList = parseUsers;
+          if (onStart){
+            updateUsers();
+            onStart = false;
+          }
         } else {
           Log.e("error", "error");
         }
