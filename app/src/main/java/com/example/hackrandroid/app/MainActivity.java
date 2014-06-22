@@ -2,6 +2,8 @@ package com.example.hackrandroid.app;
 
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +13,8 @@ import com.parse.ParseUser;
 
 
 public class MainActivity extends Activity {
+
+    private int current_frag_index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +44,13 @@ public class MainActivity extends Activity {
           case R.id.action_settings:
             return true;
           case R.id.discover:
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.main_container, new DiscoverFragment())
-                    .commit();
+            slideFragment(current_frag_index, 0);
             break;
           case R.id.matches:
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.main_container, new MatchesFragment())
-                    .commit();
+            slideFragment(current_frag_index, 1);
             break;
           case R.id.profile:
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.main_container, new ProfileFragment())
-                    .commit();
+            slideFragment(current_frag_index, 2);
             break;
         }
 
@@ -64,5 +62,36 @@ public class MainActivity extends Activity {
         ParseInstallation installation = ParseInstallation.getCurrentInstallation();
         installation.put("user", ParseUser.getCurrentUser());
         installation.saveInBackground();
+    }
+
+    private void slideFragment(int beginPos, int finishPos){
+      if (beginPos != finishPos){
+        Fragment frag = getFragmentAtPos(finishPos);
+        String tag = frag.getTag();
+
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
+        if (beginPos < finishPos) {
+          fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
+        } else{
+          fragmentTransaction.setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left,R.anim.slide_in_left, R.anim.slide_out_right);
+        }
+        fragmentTransaction.replace(R.id.main_container, frag);
+        fragmentTransaction.addToBackStack(tag);
+        fragmentTransaction.commit();
+        current_frag_index = finishPos;
+      }
+    }
+
+    private Fragment getFragmentAtPos(int index){
+      switch(index){
+        case 0:
+          return new DiscoverFragment();
+        case 1:
+          return new MatchesFragment();
+        case 2:
+          return new ProfileFragment();
+      }
+      return null;
     }
 }
