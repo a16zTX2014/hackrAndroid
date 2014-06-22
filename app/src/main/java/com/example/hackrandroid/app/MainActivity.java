@@ -2,12 +2,15 @@ package com.example.hackrandroid.app;
 
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class MainActivity extends Activity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,5 +57,21 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void slideFragment(int beginPos, int finishPos){
+
+    }
+
+    private Fragment getFragmentAtPos(int index){
+      switch(index){
+        case 0:
+          return new DiscoverFragment();
+        case 1:
+          return new MatchesFragment();
+        case 2:
+          return new ProfileFragment();
+      }
+      return null;
     }
 }
