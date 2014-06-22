@@ -24,6 +24,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -50,6 +51,10 @@ public class DiscoverFragment extends Fragment {
 
   static ImageView inner_heart;
   static ImageView inner_nope;
+
+  TextView skill1;
+  TextView skill2;
+  TextView skill3;
 
   View hero_border;
   View heartButton;
@@ -78,6 +83,10 @@ public class DiscoverFragment extends Fragment {
 
     inner_heart = (ImageView) rootView.findViewById(R.id.discover_inner_heart);
     inner_nope = (ImageView) rootView.findViewById(R.id.discover_inner_nope);
+
+    skill1 = (TextView) rootView.findViewById(R.id.profile_user_skill1);
+    skill2 = (TextView) rootView.findViewById(R.id.profile_user_skill2);
+    skill3 = (TextView) rootView.findViewById(R.id.profile_user_skill3);
 
 
     profileContainer2 = (LinearLayout) rootView.findViewById(R.id.discover_profile_container2);
@@ -304,6 +313,7 @@ public class DiscoverFragment extends Fragment {
     name.setText(userName);
     String schoolName = currentUser.getString("school");
     school.setText(schoolName);
+    ArrayList<String> skills = (ArrayList<String>)currentUser.get("skills");
 
 
     if (currentUser.has("image")) {
