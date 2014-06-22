@@ -8,9 +8,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.example.hackrandroid.app.utils.DisplayUtils;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
@@ -41,6 +44,19 @@ public class MainActivity extends Activity {
 
       getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
       getActionBar().setSplitBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+      this.getActionBar().setDisplayShowCustomEnabled(true);
+      this.getActionBar().setDisplayShowTitleEnabled(false);
+
+      LayoutInflater inflator = LayoutInflater.from(this);
+      TextView v = (TextView) inflator.inflate(R.layout.titleview, null);
+
+//if you need to customize anything else about the text, do it here.
+//I'm using a custom TextView with a custom font in my layout xml so all I need to do is set title
+      DisplayUtils.openSansRegularifyTextView(v);
+      v.setText(this.getTitle());
+
+//assign the view to the actionbar
+      this.getActionBar().setCustomView(v);
     }
 
 

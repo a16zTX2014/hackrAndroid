@@ -146,7 +146,7 @@ public class DiscoverFragment extends Fragment {
                             parseObject.put("status", 2);
                             parseObject.saveInBackground();
                         } else {
-                            Toast.makeText(getActivity(), "creating intiail match", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Finding you a match!", Toast.LENGTH_LONG).show();
                             ParseObject match = new ParseObject("Match");
                             match.put("matchee", ParseUser.getCurrentUser());
                             match.put("matcher", usersList.get(index));
@@ -277,7 +277,6 @@ public class DiscoverFragment extends Fragment {
 
   private void getUsers() {
 
-
     String currentUserName = ParseUser.getCurrentUser().getUsername();
     ParseQuery<ParseUser> query = ParseUser.getQuery();
     query.whereNotEqualTo("username", currentUserName).findInBackground(new FindCallback<ParseUser>() {
@@ -307,30 +306,32 @@ public class DiscoverFragment extends Fragment {
     school.setText(schoolName);
 
 
-    byte[] byteArray = currentUser.getBytes("image");
-    Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
-            byteArray.length);
+    if (currentUser.has("image")) {
+      byte[] byteArray = currentUser.getBytes("image");
+      Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
+              byteArray.length);
 
-    bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
+      bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
 
-    pic.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap));
-    pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
-    Log.e("userID", currentUser.getObjectId());
-
+      pic.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap));
+      pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
+      Log.e("userID", currentUser.getObjectId());
+    }
     String userName2 = nextUser.getString("name");
     name2.setText(userName2);
     String schoolName2 = nextUser.getString("school");
     school2.setText(schoolName2);
 
+    if (nextUser.has("image")) {
+      byte[] byteArray2 = nextUser.getBytes("image");
+      Bitmap bitmap2 = BitmapFactory.decodeByteArray(byteArray2, 0,
+              byteArray2.length);
+      Log.e("nextUser", nextUser.getObjectId());
 
-    byte[] byteArray2 = nextUser.getBytes("image");
-    Bitmap bitmap2 = BitmapFactory.decodeByteArray(byteArray2, 0,
-            byteArray2.length);
-    Log.e("nextUser", nextUser.getObjectId());
+      bitmap2 = Bitmap.createScaledBitmap(bitmap2, 400, 400, false);
 
-    bitmap2 = Bitmap.createScaledBitmap(bitmap2, 400, 400, false);
-
-    pic2.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap2));
-    pic2.setScaleType(ImageView.ScaleType.CENTER_CROP);
+      pic2.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap2));
+      pic2.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    }
   }
 }
