@@ -106,12 +106,18 @@ public class DiscoverFragment extends Fragment {
     DisplayUtils.openSansLightifyTextView(school);
     DisplayUtils.openSansLightifyTextView(school2);
 
-    heartButton.setOnClickListener(new View.OnClickListener() {
+      /*NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+      Notification notification = new Notification(R.drawable.ic_launcher, "New Message", System.currentTimeMillis());
+      notification.setLatestEventInfo(getActivity(), "haha", "", null);
+      notificationManager.notify(9999, notification);
+      */
+
+      heartButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if (!isAnimating) {
           if (index + 1 >= usersList.size()){
-            Toast.makeText(getActivity(),"You have run out of hackthon attendees :(", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"You have run out of hackthon attendees :(", Toast.LENGTH_SHORT).show();
           }
           else{
             isAnimating = true;
@@ -150,12 +156,12 @@ public class DiscoverFragment extends Fragment {
                 public void done(List<ParseObject> parseObjects, ParseException e) {
                     if (e == null) {
                         if (parseObjects.size() > 0) {
-                            Toast.makeText(getActivity(), "found a match", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "found a match", Toast.LENGTH_SHORT).show();
                             ParseObject parseObject = parseObjects.get(0);
                             parseObject.put("status", 2);
                             parseObject.saveInBackground();
                         } else {
-                            Toast.makeText(getActivity(), "Finding you a match!", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getActivity(), "Finding you a match!", Toast.LENGTH_SHORT).show();
                             ParseObject match = new ParseObject("Match");
                             match.put("matchee", ParseUser.getCurrentUser());
                             match.put("matcher", usersList.get(index));
@@ -289,22 +295,22 @@ public class DiscoverFragment extends Fragment {
     String currentUserName = ParseUser.getCurrentUser().getUsername();
     ParseQuery<ParseUser> query = ParseUser.getQuery();
     query.whereNotEqualTo("username", currentUserName).findInBackground(new FindCallback<ParseUser>() {
-      @Override
-      public void done(List<ParseUser> parseUsers, ParseException e) {
-        if (e == null) {
+        @Override
+        public void done(List<ParseUser> parseUsers, ParseException e) {
+            if (e == null) {
 
-          Log.e("size", String.valueOf(parseUsers.size()));
-          currentUser = parseUsers.get(index);
-          nextUser = parseUsers.get(index + 1);
-          usersList = parseUsers;
-          if (onStart){
-            updateUsers();
-            onStart = false;
-          }
-        } else {
-          Log.e("error", "error");
+                Log.e("size", String.valueOf(parseUsers.size()));
+                currentUser = parseUsers.get(index);
+                nextUser = parseUsers.get(index + 1);
+                usersList = parseUsers;
+                if (onStart) {
+                    updateUsers();
+                    onStart = false;
+                }
+            } else {
+                Log.e("error", "error");
+            }
         }
-      }
     });
   }
 
