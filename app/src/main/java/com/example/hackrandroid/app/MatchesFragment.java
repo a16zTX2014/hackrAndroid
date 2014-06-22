@@ -90,8 +90,9 @@ public class MatchesFragment extends Fragment {
               matchesData.put(matchee, parseObjects.get(0).getParseUser("matchee"));
             }
           }
-          matchedUsersData = new ArrayList<ParseUser>(matchesData.values());
-          Log.e("user Data size", matchedUsersData.size() + "");
+          Log.e("Linked data", "" + matchesData.size());
+          for (ParseUser p:  matchesData.values())
+            matchedUsersData.add(p);
           adapter.notifyDataSetChanged();
         }
       }
@@ -136,7 +137,7 @@ public class MatchesFragment extends Fragment {
 
       bitmap = Bitmap.createScaledBitmap(bitmap, 80, 80, false);
 
-      image.setImageBitmap(DisplayUtils.getCroppedBitmap(bitmap));
+      image.setImageBitmap(DisplayUtils.getCroppedBorderedBitmap(bitmap));
       image.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
       return v;

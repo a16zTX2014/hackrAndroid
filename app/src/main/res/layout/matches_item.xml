@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:layout_marginTop="15dp">
+                >
                 <TextView
                     android:id="@+id/matches_item_call"
                     android:text="Call"

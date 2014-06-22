@@ -86,6 +86,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/discover_inner_nope"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/nope"
@@ -102,6 +103,7 @@
             android:background="@drawable/heart_bg"
             android:gravity="center">
             <ImageView
+                android:id="@+id/discover_inner_heart"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/heart"
