@@ -146,7 +146,7 @@ public class DiscoverFragment extends Fragment {
                             parseObject.put("status", 2);
                             parseObject.saveInBackground();
                         } else {
-                            Toast.makeText(getActivity(), "creating intiail match", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Finding you a match!", Toast.LENGTH_LONG).show();
                             ParseObject match = new ParseObject("Match");
                             match.put("matchee", ParseUser.getCurrentUser());
                             match.put("matcher", usersList.get(index));
